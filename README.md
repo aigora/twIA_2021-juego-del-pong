@@ -1,4 +1,4 @@
-Markdown: Sintaxis
+juego del pong
 ==================
 
 *   [en que consiste](#en-que-consiste)
