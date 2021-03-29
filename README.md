@@ -23,17 +23,13 @@ Pong (o Tele-Pong) fue un videojuego de la primera generación de videoconsolas 
 Dinámica de la aplicación
 Al iniciar la aplicación, deberá aparecer en pantalla el siguiente 
 
-#### menú:|
 menú | 
 ------------ | 
 1-Iniciar partida | 
 2-Pausar/reanudar partida  |
 3-Mostrar puntuación  | 
 4-Abandonar la partida| 
-1-Iniciar partida |
-2-Pausar/reanudar partida |
-3-Mostrar puntuación | 
-4-Abandonar la partida |
+
 
 * _Opción_ 1 - Iniciar partida
 Primero se deberá elegir entre un jugador o dos. Acto seguido se deberá introducir el nombre de usuario para comenzar la partida. El juego no se iniciará si sendos jugadores tienen el mismo nombre de usuario.
