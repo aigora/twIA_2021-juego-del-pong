@@ -8,10 +8,14 @@ juego del pong
     *   [iniciar la partida](#Opción-1-Iniciar-partida)
     *   [reanudar/pausar la partida](#Opción-2-Pausar/reanudar-partida)
     *   [mostrar puntacion](#Opción-3–Mostrar-puntuación ) 
-    *   [abandonar la partida](#Opción-4–Abandonar-partida) 
+    *   [iniciar la partida](#Opción-1-Iniciar-partida)
+*   [Identificación sensores y actuadores](#Identificación-sensores-y-actuadores)  
+    *   [Medida de la distancia -Sensor ultrasonidos](#Medida-de-la-distancia---Sensor-ultrasonidos-HC-SR04) 
+    *   [CÓMO FUNCIONA UN SENSOR DE ULTRASONIDOS](#CÓMO FUNCIONA UN SENSOR DE ULTRASONIDOS)
+    *   [pulsador](#pulsador)
 * * *
 
-# en que consiste # 
+## en que consiste ## 
 Crear un juego de Ping Pong en el que el movimiento de las raquetas sea controlado por sensores ultrasonidos.
 En el juego habrá diferentes niveles de dificultad.
 También apareceran elementos en mitad del terreno de juego que si son golpeados incrementarán la puntuación del jugador responsable.
@@ -66,4 +70,65 @@ Contaremos con un jugador predeterminado, la IA el cual tendrá varias dificulta
 
 
 
+ ## Identificación sensores y actuadores
+Para el trabajo precisaremos de sensores de ultrasonido para controlar “las raquetas”, y de un botón con el cual pausemos la partida cuando queramos.
+## Medida de la distancia - Sensor ultrasonidos HC-SR04
+Queremos controlar las raquetas mediante los ultrasonidos, es decir, de forma que según movamos la mano estas se muevan a la izquierda o a la derecha.
+Un sensor de ultra sonidos es un dispositivo para medir distancias. Su funcionamiento se base en el envío de un pulso de alta frecuencia, no audible por el ser humano. Este pulso rebota en los objetos cercanos y es reflejado hacia el sensor, que dispone de un micrófono adecuado para esa frecuencia.
+Midiendo el tiempo entre pulsos, conociendo la velocidad del sonido, podemos estimar la distancia del objeto contra cuya superficie impacto el impulso de ultrasonidos
+Los sensores de ultrasonidos son sensores baratos, y sencillos de usar. El rango de medición teórico del sensor HC-SR04 es de 2cm a 400 cm, con una resolución de 0.3cm. En la práctica, sin embargo, el rango de medición real es mucho más limitado, en torno a 20cm a 2 metros.
+Los sensores de ultrasonidos son sensores de baja precisión. La orientación de la superficie a medir puede provocar que la onda se refleje, falseando la medición. Además, no resultan adecuados en entornos con gran número de objetos, dado que el sonido rebota en las superficies generando ecos y falsas mediciones. Tampoco son apropiados para el funcionamiento en el exterior y al aire libre.
+Pese a esta baja precisión, que impide conocer con precisión la distancia a un objeto, los sensores de ultrasonidos son ampliamente empleados. En robótica es habitual montar uno o varios de estos sensores, por ejemplo, para detección de obstáculos, determinar la posición del robot, crear mapas de entorno, o resolver laberintos. En aplicaciones en que se requiera una precisión superior en la medición de la distancia, suelen acompañarse de medidores de distancia por infrarrojos y sensores ópticos.
+ ## CÓMO FUNCIONA UN SENSOR DE ULTRASONIDOS
+El sensor se basa simplemente en medir el tiempo entre el envío y la recepción de un pulso sonoro. Sabemos que la velocidad del sonido es 343 m/s en condiciones de temperatura 20 ºC, 50% de humedad, presión atmosférica a nivel del mar. Transformando unidades resulta
+
  
+
+Es decir, el sonido tarda 29,2 microsegundos en recorrer un centímetro. Por tanto, podemos obtener la distancia a partir del tiempo entre la emisión y recepción del pulso mediante la siguiente ecuación.
+
+ 
+
+El motivo de divir por dos el tiempo (además de la velociad del sonido en las unidades apropiadas, que hemos calculado antes) es porque hemos medido el tiempo que tarda el pulso en ir y volver, por lo que la distancia recorrida por el pulso es el doble de la que queremos medir.
+EJEMPLO DE CÓDIGO
+ SIN LIBRERÍAS
+Para activar el sensor necesitamos generar un pulso eléctrico en el pin Trigger (disparador) de al menos 10us. Previamente, pondremos el pin a Low durante 4us para asegurar un disparo limpio.
+Posteriormente usamos la función "pulseIn" para obtener el tiempo requerido por el pulso para volver al sensor. Finalmente, convertirmos el tiempo en distancia mediante la ecuación correspondiente.
+Observar que intentamos emplear siempre aritmética de enteros, evitando usar números en coma flotante. Esto es debido a que las operaciones en coma flotante ralentizan mucho el procesador, y suponen cargar un gran número de librerías en memoria.
+const int EchoPin = 5;
+const int TriggerPin = 6;
+ 
+void setup() {
+   Serial.begin(9600);
+   pinMode(TriggerPin, OUTPUT);
+   pinMode(EchoPin, INPUT);
+}
+ 
+void loop() {
+   int cm = ping(TriggerPin, EchoPin);
+   Serial.print("Distancia: ");
+   Serial.println(cm);
+   delay(1000);
+}
+ 
+int ping(int TriggerPin, int EchoPin) {
+   long duration, distanceCm;
+   
+   digitalWrite(TriggerPin, LOW);  //para generar un pulso limpio ponemos a LOW 4us
+   delayMicroseconds(4);
+   digitalWrite(TriggerPin, HIGH);  //generamos Trigger (disparo) de 10us
+   delayMicroseconds(10);
+   digitalWrite(TriggerPin, LOW);
+   
+   duration = pulseIn(EchoPin, HIGH);  //medimos el tiempo entre pulsos, en microsegundos
+   
+   distanceCm = duration * 10 / 292/ 2;   //convertimos a distancia, en cm
+   return distanceCm;
+}
+
+Fuente: https://www.luisllamas.es/medir-distancia-con-arduino-y-sensor-de-ultrasonidos-hc-sr04/
+El principal inconveniente que encontramos es que la lectura de distancias implica bloquear la ejecución del programa mientras esta se lleva a cabo impidiendo que la aplicación realice acciones adicionales mientras espera la medida, además que en el ejemplo que hemos puesto precisamos de, cada sensor requiere dos pines del microcontrolador (Echo y Trigger)
+## Pulsador
+
+El funcionamiento básico de un botón es muy sencillo. Básicamente se conecta a un pin digital con el que leerás un 0 o un 1 dependiendo de si lo pulsas o no.
+Hay dos formas de conectarlo. El primer tipo de conexion, con la que recibes un 1 cuando pulsas el botón y un 0 cuando no está pulsado. A lo largo del tutorial nosotros vamos a utilizar este tipo de conexión. Sin embargo, vamos a explicar rápidamente como funcionan ambas conexiones por si acaso necesitas saberlo
+
