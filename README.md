@@ -32,17 +32,17 @@ menú |
 4-Abandonar la partida| 
 
 
-* _Opción 1 - Iniciar partida_
+* _Opción 1 - Iniciar partida_*
 Primero se deberá elegir entre un jugador o dos. Acto seguido se deberá introducir el nombre de usuario para comenzar la partida. El juego no se iniciará si sendos jugadores tienen el mismo nombre de usuario.
 Al elegir 1 jugador este se enfrentará contra la IA, contando esta con varias dificultades desde las más fáciles hasta las más difíciles.
 
-* -Opción 2 - Pausar/reanudar partida_
+* -Opción 2 - Pausar/reanudar partida_*
 Si se desea parar la partida uno de los usuarios, pulsará un botón y la partida se para, al reanudar la partida, el programa cargará los datos almacenados en el fichero de texto y la partida continuará en el punto en el que fue interrumpida.
 
-* _Opción 3 – Mostrar puntuación _
+* _Opción 3 – Mostrar puntuación _*
 Mostrará en pantalla la puntuación de los jugadores, al jugador que más puntos haya anotado se le asignará un tag que pondrá MVP (Most valuable player).
 
-* _Opción 4 – Abandonar partida_
+* _Opción 4 – Abandonar partida_*
 El programa se finalizará dando la victoria al contrario.
 Especificación de requisitos obligatorios
 El juego contara con bonificaciones aleatorias para el jugador que este ganando, y así complicar la remontada al jugador que vaya por detrás en la partida.
