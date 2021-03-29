@@ -1,4 +1,4 @@
-# [Título del trabajo]
+JUEGO DEL PONG CON ULTRASONIDOS
 
 [Descripción breve del proyecto a realizar (2-3 frases).]
 Crear un juego de Ping Pong en el que el movimiento de las raquetas sea controlado por sensores ultrasonidos.
