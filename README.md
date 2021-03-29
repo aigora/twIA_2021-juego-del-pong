@@ -1,4 +1,6 @@
-## ***JUEGO DEL PONG CON ULTRASONIDOS***
+Markdown: Sintaxis
+==================
+
 *   [en que consiste](#en que consiste)
 *   [integrantes del equipo](## *Integrantes del equipo*)
 *   [objetivos del trabajo](## Objetivos del trabajo)
