@@ -6,7 +6,8 @@ También apareceran elementos en mitad del terreno de juego que si son golpeados
 
 ## Integrantes del equipo
 
-Javier Alonso Geijo,
+Javier Alonso Geijo (Usuario de GitHub(javieralonso1)) 
+,
 Alberto Cámara López,
 Carlos García López-Corona,
 Sergio Cantalejo Villasante (Usuario de GitHub(SergioCantalejoVillasante)) y 
