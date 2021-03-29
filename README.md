@@ -1,16 +1,17 @@
 Markdown: Sintaxis
 ==================
 
-*   [en que consiste](#en que consiste)
-*   [integrantes del equipo](## *Integrantes del equipo*)
+*   [en que consiste](#en-que-consiste)
+*   [integrantes del equipo](# *Integrantes del equipo*)
 *   [objetivos del trabajo](## Objetivos del trabajo)
 *   [dinamica de la aplicacion](###### Dinámica de la aplicación)
     *   [iniciar la partida](## * _Opción 1 - Iniciar partida_)
     *   [reanudar/pausar la partida](## * -Opción 2 - Pausar/reanudar partida_)
     *   [mostrar puntacion](## * _Opción 3 – Mostrar puntuación ) 
     *   [abandonar la partida](## * _Opción 4 – Abandonar partida_) 
+* * *
 
-# en que consiste
+# en que consiste # 
 Crear un juego de Ping Pong en el que el movimiento de las raquetas sea controlado por sensores ultrasonidos.
 En el juego habrá diferentes niveles de dificultad.
 También apareceran elementos en mitad del terreno de juego que si son golpeados incrementarán la puntuación del jugador responsable.
