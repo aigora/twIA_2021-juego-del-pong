@@ -1,6 +1,5 @@
 ## **JUEGO DEL PONG CON ULTRASONIDOS**
 
-
 Crear un juego de Ping Pong en el que el movimiento de las raquetas sea controlado por sensores ultrasonidos.
 En el juego habrá diferentes niveles de dificultad.
 También apareceran elementos en mitad del terreno de juego que si son golpeados incrementarán la puntuación del jugador responsable.
@@ -16,4 +15,6 @@ Pablo García de Lucas
 ## Objetivos del trabajo
 
 [Lista de los objetivos que se persiguen con el trabajo propuesto.]
+Aprender a programar en C++. Aprender a convertir el lenguaje de C++ a otros lenguajes (en este caso Arduino). Aprender a usar y programar sensores como en este caso los ultrasonidos.
+
  
