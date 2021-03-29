@@ -1,4 +1,4 @@
-##JUEGO DEL PONG CON ULTRASONIDOS
+## **JUEGO DEL PONG CON ULTRASONIDOS**
 
 
 Crear un juego de Ping Pong en el que el movimiento de las raquetas sea controlado por sensores ultrasonidos.
@@ -8,7 +8,7 @@ También apareceran elementos en mitad del terreno de juego que si son golpeados
 ## Integrantes del equipo
 
 Javier Alonso Geijo,
-Alberto Cámara López (Usuario de GitHub(AlbertoCL22)),
+Alberto Cámara López,
 Carlos García López-Corona,
 Sergio Cantalejo Villasante (Usuario de GitHub(SergioCantalejoVillasante)) y 
 Pablo García de Lucas
