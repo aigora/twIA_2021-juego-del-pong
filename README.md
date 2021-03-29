@@ -14,7 +14,7 @@ Pablo García de Lucas (Usuario de GitHub(PabloGarciadeLucas))
 
 ## Objetivos del trabajo
 
-Aprender a programar en C++. Aprender a convertir el lenguaje de C++ a otros lenguajes (en este caso Arduino). Programar una inteligencia artifcial para cuando solo juegue un jugador. Aprender a usar y programar sensores como en este caso los ultrasonidos y botones.
+Aprender a programar en C++. Aprender a convertir el lenguaje de C++ a otros lenguajes (en este caso Arduino). Programar una inteligencia artifcial para cuando solo juegue un jugador. Aprender a usar y programar sensores como en este caso los ultrasonidos y pulsador.
 JUEGO DEL PONG 
 ## Objetivo
 Diseñar y desarrollar una aplicación en lenguaje C con el cual podamos jugar al ping pong mediante unos sensores de ultrasonido, el juego lleva por nombre Ultrapong.
