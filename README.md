@@ -48,11 +48,5 @@ Podremos guardar varias partidas, de tal manera el usuario escribirá save (nomb
 Contaremos con un jugador predeterminado, la IA el cual tendrá varias dificultades y estrategias que utilizará para ganarnos.
 
 
-INTEGRANTES DEL GRUPO:
--Javier Alonso Geijo
--Sergio Cantalejo Villasante
--Pablo García de Lucas
--Alberto Cámara López
--Carlos García Lopez-Corona
 
  
