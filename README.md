@@ -1,4 +1,4 @@
-###### **JUEGO DEL PONG CON ULTRASONIDOS**
+## **JUEGO DEL PONG CON ULTRASONIDOS**
 
 Crear un juego de Ping Pong en el que el movimiento de las raquetas sea controlado por sensores ultrasonidos.
 En el juego habrá diferentes niveles de dificultad.
