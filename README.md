@@ -20,8 +20,9 @@ JUEGO DEL PONG
 Diseñar y desarrollar una aplicación en lenguaje C con el cual podamos jugar al ping pong mediante unos sensores de ultrasonido, el juego lleva por nombre Ultrapong.
 Especificaciones del juego
 Pong (o Tele-Pong) fue un videojuego de la primera generación de videoconsolas publicado por Atari, creado por Nolan Bushnell y lanzado el 29 de noviembre de 1972. Pong está basado en el deporte de tenis de mesa (o ping pong). La palabra Pong es una marca registrada por Atari Interactive, mientras que la palabra genérica «pong» es usada para describir el género de videojuegos «bate y bola». La popularidad de Pong dio lugar a una demanda de infracción de patentes y ganada por parte de los fabricantes de Magnavox Odyssey, que poseía un juego similar. Es un juego de deportes en dos dimensiones que simula un tenis de mesa. El jugador controla en el juego una paleta moviéndola verticalmente en la parte izquierda de la pantalla, y puede competir tanto contra un oponente controlado por computadora, como con otro jugador humano que controla una segunda paleta en la parte opuesta. Los jugadores pueden usar las paletas para pegarle a la pelota hacia un lado u otro. El objetivo consiste en que uno de los jugadores consiga más puntos que el oponente al finalizar el juego. Estos puntos se obtienen cuando el jugador adversario falla al devolver la pelota.
-Dinámica de la aplicación
-Al iniciar la aplicación, deberá aparecer en pantalla el siguiente 
+
+###### Dinámica de la aplicación
+
 
 menú | 
 ------------ | 
@@ -31,17 +32,17 @@ menú |
 4-Abandonar la partida| 
 
 
-* _Opción_ 1 - Iniciar partida
+* _Opción 1 - Iniciar partida_
 Primero se deberá elegir entre un jugador o dos. Acto seguido se deberá introducir el nombre de usuario para comenzar la partida. El juego no se iniciará si sendos jugadores tienen el mismo nombre de usuario.
 Al elegir 1 jugador este se enfrentará contra la IA, contando esta con varias dificultades desde las más fáciles hasta las más difíciles.
 
-* -Opción 2_ – Pausar/reanudar partida
+* -Opción 2 - Pausar/reanudar partida_
 Si se desea parar la partida uno de los usuarios, pulsará un botón y la partida se para, al reanudar la partida, el programa cargará los datos almacenados en el fichero de texto y la partida continuará en el punto en el que fue interrumpida.
 
-* _Opción 3_ – Mostrar puntuación 
+* _Opción 3 – Mostrar puntuación _
 Mostrará en pantalla la puntuación de los jugadores, al jugador que más puntos haya anotado se le asignará un tag que pondrá MVP (Most valuable player).
 
-* _Opción 4_ – Abandonar partida
+* _Opción 4 – Abandonar partida_
 El programa se finalizará dando la victoria al contrario.
 Especificación de requisitos obligatorios
 El juego contara con bonificaciones aleatorias para el jugador que este ganando, y así complicar la remontada al jugador que vaya por detrás en la partida.
