@@ -10,7 +10,7 @@ Javier Alonso Geijo,
 Alberto Cámara López,
 Carlos García López-Corona,
 Sergio Cantalejo Villasante (Usuario de GitHub(SergioCantalejoVillasante)) y 
-Pablo García de Lucas (Usuario de Github(PabloGarciadeLucas))
+Pablo García de Lucas (Usuario de GitHub(PabloGarciadeLucas))
 
 ## Objetivos del trabajo
 
