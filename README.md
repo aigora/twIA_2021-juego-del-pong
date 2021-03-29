@@ -24,12 +24,12 @@ Dinámica de la aplicación
 Al iniciar la aplicación, deberá aparecer en pantalla el siguiente 
 
 #### menú:|
-menú | Second Header
------------- | -------------
-1-Iniciar partida | Content from cell 2
-2-Pausar/reanudar partida  | Content in the second column
-3-Mostrar puntuación  | Content from cell 2
-4-Abandonar la partida| Content from cell 2
+menú | 
+------------ | 
+1-Iniciar partida | 
+2-Pausar/reanudar partida  |
+3-Mostrar puntuación  | 
+4-Abandonar la partida| 
 1-Iniciar partida |
 2-Pausar/reanudar partida |
 3-Mostrar puntuación | 
