@@ -132,3 +132,55 @@ El principal inconveniente que encontramos es que la lectura de distancias impli
 El funcionamiento básico de un botón es muy sencillo. Básicamente se conecta a un pin digital con el que leerás un 0 o un 1 dependiendo de si lo pulsas o no.
 Hay dos formas de conectarlo. El primer tipo de conexion, con la que recibes un 1 cuando pulsas el botón y un 0 cuando no está pulsado. A lo largo del tutorial nosotros vamos a utilizar este tipo de conexión. Sin embargo, vamos a explicar rápidamente como funcionan ambas conexiones por si acaso necesitas saberlo
 
+
+## Diseño sistema
+
+#include <stdio.h>
+#include <locale.h>
+#include <stdlib.h>
+
+int main_menu(void);
+void configura(void);
+
+int main()
+{
+    int menu;
+    //configuracion y carga
+    configura();
+    //bucle ppal
+    do
+    {
+        menu = main_menu();
+        switch(menu)
+        {
+        case 1:break;
+        case 2:break;
+        case 3:break;
+        case 4:break;
+        case 5:break;
+        }
+    } while (menu != 5);
+    //desconexion y cierre
+}
+int main_menu(void)
+{
+    int option;
+    do
+    {
+        printf("1- Comenzar partida:\n");
+        printf("2- \n");
+        printf("3- \n");
+        printf("4- \n");
+        printf("5- Cerrar el juego\n");
+        printf("Seleccione una opcion:\n");
+        scanf_s("%d", &option);
+        if (option < 1 || option>5);
+        printf("\nSeleccione una opcion valida, porfavor\n");
+    } while (option < 1 || option>5);
+    return (option);
+}
+void configura(void)
+{
+    setlocale(LC_ALL, "spanish");
+}
+
