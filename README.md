@@ -136,10 +136,15 @@ Hay dos formas de conectarlo. El primer tipo de conexion, con la que recibes un 
 ## Diseño sistema
 
 #include <stdio.h>
+
 #include <locale.h>
+
 #include <stdlib.h>
 
+#include<malloc.h>
+
 int main_menu(void);
+
 void configura(void);
 
 int main()
