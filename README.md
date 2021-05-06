@@ -555,7 +555,78 @@ void imprimir_campo(int columna)//Imprimimos el campo
     posicion(61, 4);
     printf("R - Volver a empezar");
 }
-
+void colores()//Paleta de colores para que los jugadores seleccionen uno
+{
+    posicion(2, 10);
+    printf("Introduzca un numero para seleccionar un color\n\n");
+    SetColor(9);
+    printf("\n\n\t9");
+    SetColor(10);
+    printf("\t10");
+    SetColor(11);
+    printf("\t11");
+    SetColor(12);
+    printf("\t12");
+    SetColor(13);
+    printf("\t13");
+    SetColor(14);
+    printf("\t14");
+    SetColor(15);
+    printf("\t15");
+}
+int main()
+{
+    int linea = 0, columna = 0, linea_j1 = 10, linea_j2 = 10, tecla, velocidad, fin = 2, limiteinf = 20, limitesup = 0, x, y, direcy = -1, direcx = -1, punto1 = 0, punto2 = 0, restart = 2, cor1, cor2;
+    HideCursor();
+    posicion(45, 13);
+    printf("Cargando...");//No se esta cargando, pero queda bonito :)
+    imprimir_pong(9);//Cambia el color en el que esta escrito pong
+    Sleep(500);
+    imprimir_pong(10);
+    Sleep(500);
+    imprimir_pong(11);
+    Sleep(500);
+    imprimir_pong(12);
+    Sleep(500);
+    imprimir_pong(13);
+    Sleep(500);
+    imprimir_pong(14);
+    Sleep(500);
+    imprimir_pong(15);
+    Sleep(500);
+    system("cls");
+    posicion(15, 2);
+    SetColor(15);
+    printf("BIENVENIDOS AL JUEGO DEL PONG!!!");//TITULO DEL JUEGO
+    posicion(2, 5);
+    printf("Instrucciones:\n\tJugador 1: W para ir hacia arriba\n\t           S para ir hacia abajo\n\n");
+    printf("\tJugador 2: Flecha para arriba, para ir hacia arriba\n\t           Flecha para abajo, para ir hacia abajo\n\n");
+    printf("\t*NO VALE PULSAR EL BOTON CONTINUAMENTE PARA MOVER LAS RAQUETAS*\n");
+    printf("Presione cualquier boton para continuar");
+    getchar();
+    system("cls");
+    colores();
+    posicion(2, 2);
+    printf("Seleccione el color para el jugador 1:\t");//Menu para escoger los colores del j1
+    scanf_s("%d", &cor1);
+    posicion(2, 4);
+    printf("Seleccione el color para el jugador 2:\t");//Menu para escoger los colores del j2
+    scanf_s("%d", &cor2);
+    system("cls");
+    printf("\n\tEn que dificultad quieres jugar?\n\nPresione: [1] Para facil\n\n          [2] Para moderado\n\n          [3] Para dificil\n\n    Seleccionado: ");
+    scanf_s("%d", &velocidad);//Elegir la velocidad de l abola
+    system("cls");
+    if (velocidad == 1)
+        velocidad = 100;
+    if (velocidad == 2)
+        velocidad = 75;
+    if (velocidad == 3)
+        velocidad = 50;
+    printf("\n\nEl primero en anotar 7 goles gana,buena suerte a los jugadores!!!\n\nPresione cualquier boton para comenzar");
+    getchar();
+    imprimir_campo(columna);//imprimimos el campo
+    jugador1_arriba(linea_j1, cor1);//imprime jugador 1
+    jugador2_arriba(linea_j2, cor2);//imprime jugador 2
 
 
 
