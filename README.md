@@ -747,6 +747,40 @@ int main()
             }
             Sleep(velocidad);
         }//Despues de algun gol
+        
+        if (restart == 1)//GOL DEL JUGADOR
+        {
+            imprimir_gol(columna, linea, cor1);
+            direcx = -1;
+        }
+        if (restart == 2)//GOL DEL JUGADOR 2
+        {
+            imprimir_gol(columna, linea, cor2);
+            direcx = +1;
+        }
+        getchar();
+        if (punto1 == 7 || punto2 == 7)//Juego hasta 7 ptos
+            fim = 0;//Cuando fim =0 sale del bucle while
+
+    }//FIN DEL JUEGO
+
+    if (punto1 > punto2)
+    {
+        system("cls");
+        posicion(20, 5);
+        SetColor(cor1);
+        printf("GANA EL JUGADOR 1!!!");
+    }
+    else
+    {
+        system("cls");
+        posicion(20, 5);
+        SetColor(cor2);
+        printf("GANA EL JUGADOR 2!!!");
+    }
+    getchar();
+    return 0;
+}
 
 
 
