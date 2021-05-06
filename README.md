@@ -627,6 +627,127 @@ int main()
     imprimir_campo(columna);//imprimimos el campo
     jugador1_arriba(linea_j1, cor1);//imprime jugador 1
     jugador2_arriba(linea_j2, cor2);//imprime jugador 2
+    
+       while (fin != 0)//COMIENZO DEL JUEGO
+    {
+        system("cls");
+        imprimir_campo(columna);
+        linea_j1 = 9;//coloca al jugador 1 en la  linea 9
+        linea_j2 = 9;//coloca al jugador 2 en la  linea 9
+        jugador1_arriba(linea_j1, cor1);
+        jugador2_arriba(linea_j2, cor2);
+        x = 30;
+        y = 2 + (rand() % 17);//Empieza siempre desde el centro del campo, pero a una altura aleatoria
+        placar(punto1, punto2, cor1, cor2);
+        restart = 0;
+        getchar();
+
+        while (restart == 0)
+        {
+            apagabola(x, y);//Borrar la bola antes de actualizar su posicion
+            y = y + direcy;//Actualiza y
+            x = x + direcx;//Actualiza x
+            bola(x, y);//Imprimimos la bola con pos actualizada
+
+            if (y <= limitesup + 1)//Golpea la pelota en la parte superior del campo
+            {
+                direcy = +1;
+            }
+
+            if (y >= limiteinf - 1)//Golpea la pelota en la parte inferior del campo
+            {
+                direcy = -1;
+            }
+
+            if (y == linea_j1 && x == 2 || y == linea_j1 + 1 && x == 2 || y == linea_j1 + 2 && x == 2)//Golpea la pelota en la raqueta del jugador 1
+            {
+                direcx = +1;
+            }
+
+            if (y == linea_j2 && x == 57 || y == linea_j2 + 1 && x == 57 || y == linea_j2 + 2 && x == 57)//Golpea la pelota en la raqueta del jugador 2
+            {
+                direcx = -1;
+            }
+
+            if (x < 2)//GOL DDEL JUGADOR 2
+            {
+                punto2 = punto2 + 1;
+                restart = 2;
+            }
+
+            if (x > 58)//GOL DEL JUGADOR 1
+            {
+                punto1 = punto1 + 1;
+                restart = 1;
+            }
+
+            if (_kbhit())//MOVIMIENTO DE LAS RAQUETAS
+            {
+                tecla = getchar();
+                if (tecla == 's')//Raqueta 1(hacia abajo)
+                {
+                    linea_j1++;
+                    if (linea_j1 < limiteinf - 2)
+                    {
+                        jugador1_abajo(linea_j1, cor1);
+                    }
+                    else
+                    {
+                        linea_j1--;
+                    }
+                }
+
+                if (tecla == 'w')//Raqueta 1(hacia arriba)
+                {
+                    linea_j1--;
+                    if (linea_j1 > limitesup)
+                    {
+                        jugador1_arriba(linea_j1, cor1);
+                    }
+                    else
+                    {
+                        linea_j1++;
+                    }
+                }
+
+                if (tecla == ABAJO)//Raqueta 2(flecha abajo)
+                {
+                    linea_j2++;
+                    if (linea_j2 < limiteinf - 2)
+                    {
+                        jugador2_abajo(linea_j2, cor2);
+                    }
+                    else
+                    {
+                        linea_j2--;
+                    }
+                }
+                if (tecla == ENCIMA)//Raqueta 2(flecha arriba)
+                {
+                    linea_j2--;
+                    if (linea_j2 > limitesup)
+                    {
+                        jugador2_arriba(linea_j2, cor2);
+                    }
+                    else
+                    {
+                        linea_j2++;
+                    }
+                }
+                if (tecla == ESC)//Opcion de boton(Juego ha terminado)
+                {
+                    return 0;
+                }
+                if (tecla == 'r')//Reiniciar el juego
+                {
+                    restart = 3;
+                    punto1 = 0;
+                    punto2 = 0;
+                }
+            }
+            Sleep(velocidad);
+        }//Despues de algun gol
+
 
 
 
