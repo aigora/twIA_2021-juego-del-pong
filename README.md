@@ -12,7 +12,6 @@ juego del pong
 *   [Identificación sensores y actuadores](#Identificación-sensores-y-actuadores)  
     *   [Medida de la distancia -Sensor ultrasonidos](#Medida-de-la-distancia---Sensor-ultrasonidos-HC-SR04) 
     *   [comobfunciona un sensor ultrasonidos](#CÓMO-FUNCIONA-UN-SENSOR-DE-ULTRASONIDOS)
-    *   [pulsador](#pulsador)
 * * *
 
 ## en que consiste ## 
