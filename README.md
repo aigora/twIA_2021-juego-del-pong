@@ -93,22 +93,33 @@ EJEMPLO DE CÓDIGO
 Para activar el sensor necesitamos generar un pulso eléctrico en el pin Trigger (disparador) de al menos 10us. Previamente, pondremos el pin a Low durante 4us para asegurar un disparo limpio.
 Posteriormente usamos la función "pulseIn" para obtener el tiempo requerido por el pulso para volver al sensor. Finalmente, convertirmos el tiempo en distancia mediante la ecuación correspondiente.
 Observar que intentamos emplear siempre aritmética de enteros, evitando usar números en coma flotante. Esto es debido a que las operaciones en coma flotante ralentizan mucho el procesador, y suponen cargar un gran número de librerías en memoria.
+
+/*CÓDIGO ARDUINO*/****************************************
+
 const int EchoPin = 5;
 const int TriggerPin = 6;
- 
+const int EchoPin2 = 2;
+const int TriggerPin2 = 3;
+
 void setup() {
    Serial.begin(9600);
    pinMode(TriggerPin, OUTPUT);
    pinMode(EchoPin, INPUT);
+   pinMode(TriggerPin2, OUTPUT);
+   pinMode(EchoPin2, INPUT);
 }
- 
+
 void loop() {
    int cm = ping(TriggerPin, EchoPin);
-   Serial.print("Distancia: ");
+   int cm2 = ping(TriggerPin2, EchoPin2);
+   /*Se pone una A delante de la distancia del ultrasonido 1 y B delante del 2 para poder analizar posteriormente la correspondencia a cada uno de los sensores al trabajar en visual*/
+   Serial.print("A");
    Serial.println(cm);
-   delay(1000);
+   Serial.print("B");
+   Serial.println(cm2);
+   delay(200);
 }
- 
+
 int ping(int TriggerPin, int EchoPin) {
    long duration, distanceCm;
    
@@ -123,13 +134,229 @@ int ping(int TriggerPin, int EchoPin) {
    distanceCm = duration * 10 / 292/ 2;   //convertimos a distancia, en cm
    return distanceCm;
 }
+int ping2(int TriggerPin2, int EchoPin2) {
+   long duration2, distanceCm2;
+   
+   digitalWrite(TriggerPin2, LOW);  //para generar un pulso limpio ponemos a LOW 4us
+   delayMicroseconds(4);
+   digitalWrite(TriggerPin2, HIGH);  //generamos Trigger (disparo) de 10us
+   delayMicroseconds(10);
+   digitalWrite(TriggerPin2, LOW);
+   
+   duration2 = pulseIn(EchoPin2, HIGH);  //medimos el tiempo entre pulsos, en microsegundos
+   
+   distanceCm2 = duration2 * 10 / 292/ 2;   //convertimos a distancia, en cm
+   return distanceCm2;
+}
+
+**********************************************************
 
 Fuente: https://www.luisllamas.es/medir-distancia-con-arduino-y-sensor-de-ultrasonidos-hc-sr04/
-El principal inconveniente que encontramos es que la lectura de distancias implica bloquear la ejecución del programa mientras esta se lleva a cabo impidiendo que la aplicación realice acciones adicionales mientras espera la medida, además que en el ejemplo que hemos puesto precisamos de, cada sensor requiere dos pines del microcontrolador (Echo y Trigger)
-## Pulsador
+El principal inconveniente que encontramos es que la lectura de distancias implica bloquear la ejecución del programa mientras esta se lleva a cabo impidiendo que la aplicación realice acciones adicionales mientras espera la medida, además que en el ejemplo que hemos puesto precisamos de, cada sensor requiere dos pines del microcontrolador (Echo y Trigger).
+La distancia recibida por el sensor de ultrasonidos 1 viene dada en cm y es la variabe "cm", la distancia recibida por el segundo también viene dada en cm y es la variable "cm".
 
-El funcionamiento básico de un botón es muy sencillo. Básicamente se conecta a un pin digital con el que leerás un 0 o un 1 dependiendo de si lo pulsas o no.
-Hay dos formas de conectarlo. El primer tipo de conexion, con la que recibes un 1 cuando pulsas el botón y un 0 cuando no está pulsado. A lo largo del tutorial nosotros vamos a utilizar este tipo de conexión. Sin embargo, vamos a explicar rápidamente como funcionan ambas conexiones por si acaso necesitas saberlo
+
+
+
+/*LIBRERÍAS*/*********************************************
+Para poder recibir la señal del arduino (desde el puerto asignado "COM5"), se necesitará la biblioteca "SerialClass.h" para manejar la información desde el visual.
+
+-------SerialClass.h-------
+
+#ifndef SERIALCLASS_H_INCLUDED
+#define SERIALCLASS_H_INCLUDED
+
+#define ARDUINO_WAIT_TIME 2000
+
+#include <windows.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+class Serial
+{
+private:
+    //Serial comm handler
+    HANDLE hSerial;
+    //Connection status
+    bool connected;
+    //Get various information about the connection
+    COMSTAT status;
+    //Keep track of last error
+    DWORD errors;
+
+public:
+    //Initialize Serial communication with the given COM port
+    Serial(char* portName);
+    //Close the connection
+    //NOTA: for some reason you can't connect again before exiting
+    //the program and running it again
+    ~Serial();
+    //Read data in a buffer, if nbChar is greater than the
+    //maximum number of bytes available, it will return only the
+    //bytes available. The function return -1 when nothing could
+    //be read, the number of bytes actually read.
+    int ReadData(char* buffer, unsigned int nbChar);
+    //Writes data from a buffer through the Serial connection
+    //return true on success.
+    bool WriteData(char* buffer, unsigned int nbChar);
+    //Check if we are actually connected
+    bool IsConnected();
+
+
+};
+
+#endif // SERIALCLASS_H_INCLUDED
+
+---------------------------
+
+
+
+------SerialClass.cpp------
+
+#include "SerialClass.h"
+
+Serial::Serial(char *portName)
+{
+    //We're not yet connected
+    this->connected = false;
+
+    //Try to connect to the given port throuh CreateFile
+    this->hSerial = CreateFile(portName,
+            GENERIC_READ | GENERIC_WRITE,
+            0,
+            NULL,
+            OPEN_EXISTING,
+            FILE_ATTRIBUTE_NORMAL,
+            NULL);
+
+    //Check if the connection was successfull
+    if(this->hSerial==INVALID_HANDLE_VALUE)
+    {
+        //If not success full display an Error
+        if(GetLastError()==ERROR_FILE_NOT_FOUND){
+
+            //Print Error if neccessary
+            printf("ERROR: Handle was not attached. Reason: %s not available.\n", portName);
+
+        }
+        else
+        {
+            printf("ERROR!!!");
+        }
+    }
+    else
+    {
+        //If connected we try to set the comm parameters
+        DCB dcbSerialParams = {0};
+
+        //Try to get the current
+        if (!GetCommState(this->hSerial, &dcbSerialParams))
+        {
+            //If impossible, show an error
+            printf("failed to get current serial parameters!");
+        }
+        else
+        {
+            //Define serial connection parameters for the arduino board
+            dcbSerialParams.BaudRate=CBR_9600;
+            dcbSerialParams.ByteSize=8;
+            dcbSerialParams.StopBits=ONESTOPBIT;
+            dcbSerialParams.Parity=NOPARITY;
+
+             //Set the parameters and check for their proper application
+             if(!SetCommState(hSerial, &dcbSerialParams))
+             {
+                printf("ALERT: Could not set Serial Port parameters");
+             }
+             else
+             {
+                 //If everything went fine we're connected
+                 this->connected = true;
+                 //We wait 2s as the arduino board will be reseting
+                 Sleep(ARDUINO_WAIT_TIME);
+             }
+        }
+    }
+
+}
+
+Serial::~Serial()
+{
+    //Check if we are connected before trying to disconnect
+    if(this->connected)
+    {
+        //We're no longer connected
+        this->connected = false;
+        //Close the serial handler
+        CloseHandle(this->hSerial);
+    }
+}
+
+int Serial::ReadData(char *buffer, unsigned int nbChar)
+{
+    //Number of bytes we'll have read
+    DWORD bytesRead;
+    //Number of bytes we'll really ask to read
+    unsigned int toRead;
+
+    //Use the ClearCommError function to get status info on the Serial port
+    ClearCommError(this->hSerial, &this->errors, &this->status);
+
+    //Check if there is something to read
+    if(this->status.cbInQue>0)
+    {
+        //If there is we check if there is enough data to read the required number
+        //of characters, if not we'll read only the available characters to prevent
+        //locking of the application.
+        if(this->status.cbInQue>nbChar)
+        {
+            toRead = nbChar;
+        }
+        else
+        {
+            toRead = this->status.cbInQue;
+        }
+
+        //Try to read the require number of chars, and return the number of read bytes on success
+        if(ReadFile(this->hSerial, buffer, toRead, &bytesRead, NULL) && bytesRead != 0)
+        {
+            return bytesRead;
+        }
+
+    }
+
+    //If nothing has been read, or that an error was detected return -1
+    return -1;
+
+}
+
+
+bool Serial::WriteData(char *buffer, unsigned int nbChar)
+{
+    DWORD bytesSend;
+
+    //Try to write the buffer on the Serial port
+    if(!WriteFile(this->hSerial, (void *)buffer, nbChar, &bytesSend, 0))
+    {
+        //In case it don't work get comm error and return false
+        ClearCommError(this->hSerial, &this->errors, &this->status);
+
+        return false;
+    }
+    else
+        return true;
+}
+
+bool Serial::IsConnected()
+{
+    //Simply return the connection status
+    return this->connected;
+}
+
+---------------------------
+
+
+
 
 
 ## Diseño sistema
@@ -141,6 +368,10 @@ Hay dos formas de conectarlo. El primer tipo de conexion, con la que recibes un 
 #include <stdlib.h>
 
 #include<malloc.h>
+
+#include <windows.h>
+
+#include"SerialClass.h"
 
 int main_menu(void);
 
@@ -187,17 +418,83 @@ void configura(void)
 {
     setlocale(LC_ALL, "spanish");
 }
-## NUEVA ESTRUCTURA DE CODIGO FUNCIONAL
+
+
+
+
+## NUEVA ESTRUCTURA DE CODIGO FUNCIONAL*********************
 /*Parte del codigo desarrollado con videos de youtube,pues habia partes en las que nos quedabamos trabados*/
 
 
 #include<windows.h>
 #include<stdio.h>
 #include<conio.h>
-
+#include <stdlib.h>
+#include "SerialClass"
 #define ENCIMA 72
 #define ABAJO 80
 #define ESC 27
+#define N 19
+
+/*La parte de Arduino está pendiente de revisión por problemas al convertir la distancia del sensor 2 a una variable del tipo int manejable*/
+//Introducir en la parte correspondiente del juego del Pong
+
+int main() //Conexión con arduino y lectura de distancias por los ultrasonidos
+{
+	Serial* Arduino;
+	char puerto[] = "COM5";
+	char BufferEntrada[200], tmp[5], ind, sensor, sensora[3], sensorb[3];
+	int bytesRecibidos, i = 0, j = 0, k = 0, sena = 0, senb = 0;
+	int esentero(char);
+	
+	Arduino = new Serial((char*)puerto);
+	while (Arduino->IsConnected())
+	{
+		bytesRecibidos = Arduino->ReadData(BufferEntrada, sizeof(char) * N);
+		if (bytesRecibidos != -1) // Lectura de mensaje desde el puerto
+		{
+			BufferEntrada[bytesRecibidos - 1] = '\0';
+			printf("%s\n", BufferEntrada); //Impresión entrada arduino
+		}
+		/*else
+			printf("No se ha recibido nada\n");*/
+		printf("-------------\n");
+		sensor = ' ';
+		
+		for (i = 0;i < N;i++) {
+			ind = BufferEntrada[i];
+			if (ind == 'A') { sensor = 'A';j = 0; k = 0; strcpy_s(sensora, "");}
+			if (ind == 'B') { sensor = 'B';j = 0;k = 0;strcpy_s(sensorb, ""); }
+			if (esentero(ind) && sensor == 'A' && j < 3) { sensora[j] = ind; j++; }
+			if (esentero(ind) && sensor == 'B' && k < 3) { sensorb[k] = ind; k++; }
+		}
+
+		printf("sensora:  %s   j:%d   k:%d\n", sensora, j, k);
+		printf("sensorb:  %s   j:%d   k:%d\n", sensorb, j, k);
+
+		sena = atoi(sensora);
+		senb = atoi(sensorb);
+
+		printf("sena:  %d\n", sena);
+		printf("senb:  %d\n", senb);
+
+		Sleep(200);
+	}
+}
+int esentero(char dato) //Para ver si es un número entero a la hora de analizar los datos de entrada
+{
+	if (dato == '0' || dato == '1' || dato == '2' || dato == '3' || dato == '4' || dato == '5' || dato == '6' || dato == '7' || dato == '8' || dato == '9')
+	{
+		return 1;
+	}
+	else {
+		return 0;
+	}
+}
+
+
+
+
 
 void SetColor(int ForgC)//Funcion para cambiar los colores
 {
