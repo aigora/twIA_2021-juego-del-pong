@@ -422,7 +422,7 @@ void configura(void)
 
 
 
-## NUEVA ESTRUCTURA DE CODIGO FUNCIONAL*********************
+## NUEVA ESTRUCTURA DE CODIGO FUNCIONAL
 /*Parte del codigo desarrollado con videos de youtube,pues habia partes en las que nos quedabamos trabados*/
 
 
