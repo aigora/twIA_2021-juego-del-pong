@@ -439,7 +439,7 @@ void configura(void)
 /*La parte de Arduino está pendiente de revisión por problemas al convertir la distancia del sensor 2 a una variable del tipo int manejable*/
 //Introducir en la parte correspondiente del juego del Pong
 
-int main() //Conexión con arduino y lectura de distancias por los ultrasonidos
+int main() /*Conexión con arduino y lectura de distancias por los ultrasonidos*/
 {
 	Serial* Arduino;
 	char puerto[] = "COM5";
