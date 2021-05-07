@@ -481,7 +481,7 @@ int main() /*Conexión con arduino y lectura de distancias por los ultrasonidos*
 		Sleep(200);
 	}
 }
-int esentero(char dato) //Para ver si es un número entero a la hora de analizar los datos de entrada
+int esentero(char dato) /*Para ver si es un número entero a la hora de analizar los datos de entrada*/
 {
 	if (dato == '0' || dato == '1' || dato == '2' || dato == '3' || dato == '4' || dato == '5' || dato == '6' || dato == '7' || dato == '8' || dato == '9')
 	{
