@@ -15,9 +15,7 @@ juego del pong
 * * *
 
 ## en que consiste ## 
-Crear un juego de Ping Pong en el que el movimiento de las raquetas sea controlado por sensores ultrasonidos.
-En el juego habrá diferentes niveles de dificultad.
-También apareceran elementos en mitad del terreno de juego que si son golpeados incrementarán la puntuación del jugador responsable.
+Crear el juego del Pong en el que el movimiento de las raquetas sea controlado por sensores ultrasonidos.
 
 ## *Integrantes del equipo* ##
 
@@ -29,10 +27,10 @@ Pablo García de Lucas (Usuario de GitHub(PabloGarciadeLucas))
 
 ## Objetivos del trabajo
 
-Aprender a programar en C++. Aprender a convertir el lenguaje de C++ a otros lenguajes (en este caso Arduino). Programar una inteligencia artifcial para cuando solo juegue un jugador. Aprender a usar y programar sensores como en este caso los ultrasonidos y pulsador.
+Aprender a programar en C++. Aprender a convertir el lenguaje de C++ a otros lenguajes (en este caso Arduino) y viceversa. Aprender a usar y programar sensores como en este caso los ultrasonidos.
 JUEGO DEL PONG 
 ## Objetivo
-Diseñar y desarrollar una aplicación en lenguaje C con el cual podamos jugar al ping pong mediante unos sensores de ultrasonido, el juego lleva por nombre Ultrapong.
+Diseñar y desarrollar una aplicación en lenguaje C con el cual podamos jugar al pong mediante unos sensores de ultrasonidos.
 Especificaciones del juego
 Pong (o Tele-Pong) fue un videojuego de la primera generación de videoconsolas publicado por Atari, creado por Nolan Bushnell y lanzado el 29 de noviembre de 1972. Pong está basado en el deporte de tenis de mesa (o ping pong). La palabra Pong es una marca registrada por Atari Interactive, mientras que la palabra genérica «pong» es usada para describir el género de videojuegos «bate y bola». La popularidad de Pong dio lugar a una demanda de infracción de patentes y ganada por parte de los fabricantes de Magnavox Odyssey, que poseía un juego similar. Es un juego de deportes en dos dimensiones que simula un tenis de mesa. El jugador controla en el juego una paleta moviéndola verticalmente en la parte izquierda de la pantalla, y puede competir tanto contra un oponente controlado por computadora, como con otro jugador humano que controla una segunda paleta en la parte opuesta. Los jugadores pueden usar las paletas para pegarle a la pelota hacia un lado u otro. El objetivo consiste en que uno de los jugadores consiga más puntos que el oponente al finalizar el juego. Estos puntos se obtienen cuando el jugador adversario falla al devolver la pelota.
 
@@ -41,31 +39,26 @@ Pong (o Tele-Pong) fue un videojuego de la primera generación de videoconsolas 
 
 menú | 
 ------------ | 
-1-Iniciar partida | 
-2-Pausar/reanudar partida  |
-3-Abandonar la partida  | 
+1-Un jugador | 
+2-Dos jugadores |
+3-Cerrar juego  | 
 
 
-## * _Opción 1 - Iniciar partida_
-Primero se deberá elegir entre un jugador o dos. Acto seguido se deberá introducir el nombre de usuario para comenzar la partida. El juego no se iniciará si sendos jugadores tienen el mismo nombre de usuario.
-Al elegir 1 jugador este se enfrentará contra la IA, contando esta con varias dificultades desde las más fáciles hasta las más difíciles.
+## * _Opción 1 - Un jugador_
+ Modo de práctica a modo de frontón.
+ Para este modo sólo es necesario el ultrasonido del jugador 1.
+ El jugador empieza con 7 vidas, cada vez que le marcan gol pierde una vida, así hasta quedarse con ninguna.
+ El objetivo de este modo es dar el máximo número de veces al muro de la derecha para perfeccionar tus habilidades.
+ Para este modo de juego se ha creado un fichero de texto "marcadores.txt", gracias a esto podrás conservar tu mejor puntuación de una partida a otra e intentar superarte.
 
-## * -Opción 2 - Pausar/reanudar partida_
-Si se desea parar la partida uno de los usuarios, pulsará un botón y la partida se para, al reanudar la partida, el programa cargará los datos almacenados en el fichero de texto y la partida continuará en el punto en el que fue interrumpida.
+## * _Opción 2 - Dos jugadores_
+El clásico juego del pong para dos jugadores locales.
+Para este modo cada jugador deberá usar un ultrasonido.
+El objetivo de este modo es llegar a 7 puntos, el primero que lo consiga ganará la partida.
+Debajo del terreno de juego aparecerá un marcador en el cual se mostrará la puntuación, y si vas ganando aparecerá una flecha amarilla en tu respectivo lugar.
 
-## * _Opción 3 – Mostrar puntuación 
-Mostrará en pantalla la puntuación de los jugadores, al jugador que más puntos haya anotado se le asignará un tag que pondrá MVP (Most valuable player).
-
-## * _Opción 4 – Abandonar partida_
-El programa se finalizará dando la victoria al contrario.
-Especificación de requisitos obligatorios
-El juego contara con bonificaciones aleatorias para el jugador que este ganando, y así complicar la remontada al jugador que vaya por detrás en la partida.
-Contaremos con la opción de seleccionar el usuario que queramos usar, para continuar con nuestro progreso en la partida previamente guardada.
-El programa cargará los datos de los usuarios desde el fichero al iniciarse la aplicación y almacenará la información en el fichero.
-Especificaciones de requisitos adicionales
-Podremos guardar varias partidas, de tal manera el usuario escribirá save (nombre), para guardar la partida en dicho fichero.
-Contaremos con un jugador predeterminado, la IA el cual tendrá varias dificultades y estrategias que utilizará para ganarnos.
-
+## * _Opción 3 – Cerrar juego 
+Con esta opción se cierra el programa.
 
 
  ## Identificación sensores y actuadores
