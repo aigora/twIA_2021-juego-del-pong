@@ -62,15 +62,19 @@ Con esta opción se cierra el programa.
 
 
  ## Identificación sensores y actuadores
-Para el trabajo precisaremos de sensores de ultrasonido para controlar “las raquetas”, y de un botón con el cual pausemos la partida cuando queramos.
+Para el trabajo precisaremos de sensores de ultrasonidos para controlar “las raquetas”, estos sensores se encontrarán en un circuito montado en Arduino que deberá estar conectado durante la ejecución del programa para que funcione adecuadamente.
+Para ver el montaje del Arduino, dirígete al esquema que se encuentra al principio del proyecto de GitHub.
+En caso de error durante la ejecucuión del programa le hemos asignado el puerto "COM5".
+
 ## Medida de la distancia - Sensor ultrasonidos HC-SR04
-Queremos controlar las raquetas mediante los ultrasonidos, es decir, de forma que según movamos la mano estas se muevan a la izquierda o a la derecha.
-Un sensor de ultra sonidos es un dispositivo para medir distancias. Su funcionamiento se base en el envío de un pulso de alta frecuencia, no audible por el ser humano. Este pulso rebota en los objetos cercanos y es reflejado hacia el sensor, que dispone de un micrófono adecuado para esa frecuencia.
+Queremos controlar las raquetas mediante los ultrasonidos, es decir, de forma que según movamos la mano estas se muevan hacia arriba o abajo.
+Un sensor de ultra sonidos es un dispositivo para medir distancias. Su funcionamiento se basa en el envío de un pulso de alta frecuencia, no audible por el ser humano. Este pulso rebota en los objetos cercanos y es reflejado hacia el sensor, que dispone de un micrófono adecuado para esa frecuencia.
 Midiendo el tiempo entre pulsos, conociendo la velocidad del sonido, podemos estimar la distancia del objeto contra cuya superficie impacto el impulso de ultrasonidos
 Los sensores de ultrasonidos son sensores baratos, y sencillos de usar. El rango de medición teórico del sensor HC-SR04 es de 2cm a 400 cm, con una resolución de 0.3cm. En la práctica, sin embargo, el rango de medición real es mucho más limitado, en torno a 20cm a 2 metros.
 Los sensores de ultrasonidos son sensores de baja precisión. La orientación de la superficie a medir puede provocar que la onda se refleje, falseando la medición. Además, no resultan adecuados en entornos con gran número de objetos, dado que el sonido rebota en las superficies generando ecos y falsas mediciones. Tampoco son apropiados para el funcionamiento en el exterior y al aire libre.
 Pese a esta baja precisión, que impide conocer con precisión la distancia a un objeto, los sensores de ultrasonidos son ampliamente empleados. En robótica es habitual montar uno o varios de estos sensores, por ejemplo, para detección de obstáculos, determinar la posición del robot, crear mapas de entorno, o resolver laberintos. En aplicaciones en que se requiera una precisión superior en la medición de la distancia, suelen acompañarse de medidores de distancia por infrarrojos y sensores ópticos.
- ## CÓMO FUNCIONA UN SENSOR DE ULTRASONIDOS
+
+## CÓMO FUNCIONA UN SENSOR DE ULTRASONIDOS
 El sensor se basa simplemente en medir el tiempo entre el envío y la recepción de un pulso sonoro. Sabemos que la velocidad del sonido es 343 m/s en condiciones de temperatura 20 ºC, 50% de humedad, presión atmosférica a nivel del mar. Transformando unidades resulta
 
  
