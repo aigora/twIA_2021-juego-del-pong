@@ -43,8 +43,7 @@ menú |
 ------------ | 
 1-Iniciar partida | 
 2-Pausar/reanudar partida  |
-3-Mostrar puntuación  | 
-4-Abandonar la partida| 
+3-Abandonar la partida  | 
 
 
 ## * _Opción 1 - Iniciar partida_
