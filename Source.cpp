@@ -8,7 +8,7 @@
 #define ESC 27
 #define N 20
 
-int esentero(char dato);
+int esentero(char dato); //Funcion para identificar si es un numero el caracter que llega de la se√±al de entrada del Arduino
 
 void SetColor(int ForgC); //Funcion para cambiar los colores
 
@@ -38,7 +38,7 @@ void jugador2_abajo(int linea_j2, int color);//Movimiento del j2 hacia abajo
 
 void marcador(int punto1, int punto2, int color1, int color2); //Imprimimos el marcador en la parte inferior
 
-void marcador_practica(int punto2, int puntuacion_muro);//Marcador en el modo pr·ctica //Uso de fichero marcador.txt
+void marcador_practica(int punto2, int puntuacion_muro);//Marcador en el modo pr√°ctica //Uso de fichero marcador.txt
 
 void imprimir_campo(int columna);//Imprimimos el campo
 
@@ -643,7 +643,7 @@ void marcador(int punto1, int punto2, int color1, int color2)//Imprimimos el mar
     printf("%d", punto2);
 }
 
-void marcador_practica(int punto2, int puntuacion_muro)//Marcador en el modo pr·ctica //Uso de fichero marcador.txt
+void marcador_practica(int punto2, int puntuacion_muro)//Marcador en el modo pr√°ctica //Uso de fichero marcador.txt
 {
     int aux, leer;
     int escr;
@@ -655,7 +655,7 @@ void marcador_practica(int punto2, int puntuacion_muro)//Marcador en el modo pr·
     errno_t err;
 
     err = fopen_s(&marcadores, "marcadores.txt", "a+");
-    //VerificaciÛn de apertura del archivo
+    //Verificaci√≥n de apertura del archivo
     if (err == NULL)
         printf("\n");
 
@@ -684,7 +684,7 @@ void marcador_practica(int punto2, int puntuacion_muro)//Marcador en el modo pr·
     fclose(marcadores);
 
     err = fopen_s(&marcadores, "marcadores.txt", "a+");
-    //VerificaciÛn de apertura del archivo
+    //Verificaci√≥n de apertura del archivo
     if (err == NULL)
         printf("\n");
 
