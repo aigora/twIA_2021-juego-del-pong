@@ -57,7 +57,7 @@ Para este modo cada jugador deberá usar un ultrasonido.
 El objetivo de este modo es llegar a 7 puntos, el primero que lo consiga ganará la partida.
 Debajo del terreno de juego aparecerá un marcador en el cual se mostrará la puntuación, y si vas ganando aparecerá una flecha amarilla en tu respectivo lugar.
 
-## * _Opción 3 – Cerrar juego 
+## * _Opción 3 – Cerrar juego_
 Con esta opción se cierra el programa.
 
 
